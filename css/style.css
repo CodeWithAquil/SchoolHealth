@@ -1,0 +1,13 @@
+@font-face
+{
+    font-family:myFirstFont;
+    src:url(./fonts/arabtype.ttf);
+}
+
+body
+{
+    font-family:myFirstFont;
+    color:rgb(8, 8, 8);
+    font-size: x-large;
+
+}
