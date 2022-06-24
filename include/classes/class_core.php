@@ -57,19 +57,11 @@ class Core
     function Transact($sql='')
     {
         global $con;
-        if(empty($sql)){return false;}
-        $con->BeginTrans();
-        $this->ok=$con->Execute($sql);
-        if($this->ok)
-        {
-            $con->CommitTrans();
-            return true;
-        }
-        else
-        {
-            $con->RollbackTrans();
-            return false;
-        }
+        if(!empty($sql)){$this->sql=$sql;}
+        #$con->BeginTrans();
+        $this->ok=$con->Execute($this->sql);
+        if($this->ok){/*$con->CommitTrans();*/return true;}
+        else{/*$con->RollbackTrans();*/return false;}
     }
    
     function _prepSaveArray()
@@ -162,6 +154,7 @@ class Core
         $index=substr_replace($index,'',(strlen($index))-1);
         $values=substr_replace($values,'',(strlen($values))-1);
         $this->sql="INSERT INTO $this->coretable ($index) VALUES ($values)";
+        #echo $this->sql."<br><br>";
         reset($array);
         return $this->Transact();
     }
@@ -184,7 +177,7 @@ class Core
         return $this->Transact();
     }
 
-    function updateDataFromInternalArray($item_nr,$isnum)
+    function updateDataFromInternalArray($item_nr,$isnum=true)
     {
         if(empty($item_nr) || ($isnum && !is_numeric($item_nr))){return false;}
         $this->_prepSaveArray();
