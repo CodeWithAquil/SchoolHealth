@@ -20,15 +20,14 @@ if($_POST['mode']=="save")
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="<?php echo $rootPath;?>images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="<?php echo $rootPath;?>assets/favicon.ico">
     <title>Ragestration</title><?php
-    include($rootPath."css-collection-master.php");
     $GenderArray=$ObjRagestration->GetGenders();
-    $SalutationArray=$ObjRagestration->GetSalutation();
-    ?>
+    $SalutationArray=$ObjRagestration->GetSalutation();?>
 </head>
 <body>
+    <?php include($rootPath."main/master_header.php");?>
     <div class="container">
         <form action="<?php echo $thisFile;?>" id="regestration" name="regestration" method="post" autocomplete="off">
             <div class="shadow-lg p-3 mb-5 bg-body rounded">
@@ -86,6 +85,6 @@ if($_POST['mode']=="save")
             </div>
         </form>
     </div>
+    <?php include($rootPath."main/master_footer.php");?>
 </body>
-<?php include($rootPath."js-collection-master.php");?>
 </html>
